@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	const studentId = document.getElementById("studentId").value;
 	
 //	console.log(studentId);
+	console.log("tot" + checkEvalDone);
 	
 	var check_flag = 0;
 	for (var i=0; i<checkEvalDone.length; i++){

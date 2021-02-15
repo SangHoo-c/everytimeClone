@@ -121,6 +121,7 @@
                 </div>
             </div>
         </div>
+        <script src="<c:url value="/resources/js/subjectList.js" />"></script>
         <script src="<c:url value="/resources/js/nav.js" />"></script>
     </body>
 </html>

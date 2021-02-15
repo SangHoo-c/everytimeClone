@@ -57,7 +57,8 @@
             	</c:forEach>
             </div>
             <div class="lecture">
-                <a class="button check-button" href="grade?studentId=${loginOK.studentId }" >성적확인</a>
+                <!-- <a class="button check-button" href="grade?studentId=${loginOK.studentId }" >성적확인</a> -->
+                <a class="button check-button" href="#" >성적확인</a>
             </div>
         </div>
 		

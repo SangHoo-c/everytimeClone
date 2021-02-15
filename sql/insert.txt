@@ -44,6 +44,8 @@ INSERT INTO grades(grade_no, score, grade, register_no, subject_no) VALUES (1423
 INSERT INTO grades(grade_no, score, grade, register_no, subject_no) VALUES (1424, 96.00, 4.50, 20201, 20105);
 INSERT INTO grades(grade_no, score, grade, register_no, subject_no) VALUES (1425, 96.00, 4.50, 20201, 20106);
 INSERT INTO grades(grade_no, score, grade, register_no, subject_no) VALUES (1426, 82.00, 3.00, 20201, 20201);
+
+INSERT INTO grades(grade_no, score, grade, register_no, subject_no) VALUES (1500, 82.00, 3.00, 20102, 20202);
 INSERT INTO grades VALUES (1411, 90.00, 4.00, 2, 2, 2, 2, 2, 3, '회화인데 문법 위주임. 정해진 표현 잘 외웠다가 써야하고 좀 힘들었음', 20101, 10130);
 INSERT INTO grades VALUES (1412, 85.00, 3.50, 2, 2, 1, 2, 2, 3, '실습 위주의 수업인데, 조금 지루해요', 20101, 20101);
 INSERT INTO grades VALUES (1413, 92.00, 4.00, 1, 1, 1, 1, 1, 5, '교수님이 정말 친절하시고 알아듣기 쉽게 차근차근 잘 가르쳐주세요', 20101, 20102);

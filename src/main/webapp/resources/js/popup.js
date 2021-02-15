@@ -28,12 +28,22 @@ document.addEventListener("DOMContentLoaded", function(){
 		}
 		// console.log(buttonList[i].dataset.gradeNo);
 	}
+	
+//	console.log("student_id" + document.getElementById("studentId").value);
+	
+	
+	// 수정본 
 	checkButton.onclick = function(){
 		if(buttonList.length == check_flag){
-			location.href = "semesterCheck.html";
+			const studentId = document.getElementById("studentId").value;		
+			const valYear = 2020;
+			const valSemester = "2";
+
+			location.href="check?studentId="+studentId+"&registerYear="+valYear+"&registerSemester="+valSemester
 		}else alert("강의평을 마저 작성해주세요.");
 		
 	}
+	
 	
 
 	var assessmentInput = document.querySelectorAll("dd a");
@@ -234,6 +244,8 @@ document.addEventListener("DOMContentLoaded", function(){
 	console.log("done!");
 
 });
+
+
 
 
 

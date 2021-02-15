@@ -139,6 +139,13 @@ public class HomeController {
 	public String view(HttpServletRequest request) {
 		Map<String, Object> info=subjectService.getInfo(Integer.parseInt(request.getParameter("subjectNo")));
 		request.setAttribute("info", info);
+		
+		HttpSession session=request.getSession(false);  
+		StudentVO loginOK =(StudentVO)session.getAttribute("loginOK"); 
+		String studentId = (String)loginOK.getStudentId();
+		Collection<String> totalEvalCheck = subjectService.getTotalEvalCheck(studentId);
+		request.setAttribute("totalEvalCheck", totalEvalCheck);
+		
 		return "subjectInfo";
 	}
 	
