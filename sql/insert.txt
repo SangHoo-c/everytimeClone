@@ -1,0 +1,58 @@
+1. 학생정보(students) 테이블
+INSERT INTO students VALUES ('201600101', '이수연', '010-4321-1020', 'F', 'suyeon', 'ab123');
+INSERT INTO students VALUES ('201500102', '이상후', '010-2030-4050', 'M', 'shlee', 'cd456');
+INSERT INTO students VALUES ('202000103', '홍길동', '010-9000-1234', 'M', 'hh01', 'ef789');
+
+2. 학기별_수강정보(registers) 테이블
+INSERT INTO registers VALUES (16101, 2016, '1', '201600101');
+INSERT INTO registers VALUES (16201, 2016, '2', '201600101');
+INSERT INTO registers VALUES (18101, 2018, '1', '201600101');
+INSERT INTO registers VALUES (18201, 2018, '2', '201600101');
+INSERT INTO registers VALUES (19101, 2019, '1', '201600101');
+INSERT INTO registers VALUES (19201, 2019, '2', '201600101');
+INSERT INTO registers VALUES (20101, 2020, '1', '201600101');
+INSERT INTO registers VALUES (20201, 2020, '2', '201600101');
+INSERT INTO registers VALUES (20102, 2020, '1', '201500102');
+INSERT INTO registers VALUES (20202, 2020, '2', '201500102');
+INSERT INTO registers VALUES (20103, 2020, '1', '202000103');
+INSERT INTO registers VALUES (20203, 2020, '2', '202000103');
+
+3. 과목정보(subjects) 테이블
+INSERT INTO subjects VALUES (10130, '교양필수', '기초영어', '안정민', 2);
+INSERT INTO subjects VALUES (10131, '교양필수', '건강개론', '이희성', 2);
+INSERT INTO subjects VALUES (10132, '교양필수', '일반물리학', '김동진', 3);
+INSERT INTO subjects VALUES (10201, '교양선택', '기초수학', '박동호', 2);
+INSERT INTO subjects VALUES (10202, '교양선택', '건강개론', '신은경', 2);
+INSERT INTO subjects VALUES (10203, '교양선택', '커뮤니케이션리더십', '이수진', 3);
+INSERT INTO subjects VALUES (20101, '전공필수', 'C프로그래밍', '이병호', 3);
+INSERT INTO subjects VALUES (20102, '전공필수', '자바프로그래밍I', '서진수', 3);
+INSERT INTO subjects VALUES (20103, '전공필수', '자바프로그래밍II', '이윤나', 3);
+INSERT INTO subjects VALUES (20104, '전공필수', '운영체제', '김지훈', 3);
+INSERT INTO subjects VALUES (20105, '전공필수', '데이터베이스', '김문호', 3);
+INSERT INTO subjects VALUES (20106, '전공필수', '컴퓨터구조', '김진욱', 3);
+INSERT INTO subjects VALUES (20107, '전공필수', '컴퓨터자료구조', '임세현', 3);
+INSERT INTO subjects VALUES (20201, '전공심화', '웹프로그래밍', '김지훈', 3);
+INSERT INTO subjects VALUES (20202, '전공심화', '리눅스시스템', '김미희', 3);
+INSERT INTO subjects VALUES (20203, '전공심화', '파이선프로그래밍', '남유선', 3);
+INSERT INTO subjects VALUES (20204, '전공심화', '데이터베이스설계', '김문호', 3);
+INSERT INTO subjects VALUES (20205, '전공심화', '자바프로그래밍응용', '최정호', 3);
+
+4. 과목별_성적(grades) 테이블
+INSERT INTO grades(grade_no, score, grade, register_no, subject_no) VALUES (1421, 86.00, 3.50, 20201, 10132);
+INSERT INTO grades(grade_no, score, grade, register_no, subject_no) VALUES (1422, 92.00, 4.00, 20201, 10203);
+INSERT INTO grades(grade_no, score, grade, register_no, subject_no) VALUES (1423, 88.00, 3.50, 20201, 20103);
+INSERT INTO grades(grade_no, score, grade, register_no, subject_no) VALUES (1424, 96.00, 4.50, 20201, 20105);
+INSERT INTO grades(grade_no, score, grade, register_no, subject_no) VALUES (1425, 96.00, 4.50, 20201, 20106);
+INSERT INTO grades(grade_no, score, grade, register_no, subject_no) VALUES (1426, 82.00, 3.00, 20201, 20201);
+INSERT INTO grades VALUES (1411, 90.00, 4.00, 2, 2, 2, 2, 2, 3, '회화인데 문법 위주임. 정해진 표현 잘 외웠다가 써야하고 좀 힘들었음', 20101, 10130);
+INSERT INTO grades VALUES (1412, 85.00, 3.50, 2, 2, 1, 2, 2, 3, '실습 위주의 수업인데, 조금 지루해요', 20101, 20101);
+INSERT INTO grades VALUES (1413, 92.00, 4.00, 1, 1, 1, 1, 1, 5, '교수님이 정말 친절하시고 알아듣기 쉽게 차근차근 잘 가르쳐주세요', 20101, 20102);
+INSERT INTO grades VALUES (1321, 82.00, 3.00, 2, 2, 2, 2, 2, 3, '너무 지루했어요ㅠㅠ', 19201, 10131);
+INSERT INTO grades VALUES (1311, 94.00, 4.00, 2, 1, 2, 2, 1, 4, '이해가 잘 돼요', 19101, 10201);
+INSERT INTO grades VALUES (1221, 78.00, 3.50, 2, 2, 1, 2, 2, 2, '어려워요', 18201, 10202);
+INSERT INTO grades VALUES (1211, 90.00, 4.00, 3, 3, 1, 2, 2, 3, '과제가 너무 많아요', 18101, 20104);
+INSERT INTO grades VALUES (1121, 86.00, 3.50, 2, 2, 2, 2, 2, 5, '최고의 교수님...', 16201, 20107);
+INSERT INTO grades VALUES (1111, 90.00, 4.00, 1, 1, 1, 1, 1, 1, '수업이 이해가 안돼요', 16101, 20202);
+INSERT INTO grades VALUES (2421, 96.00, 4.5, 2, 1, 1, 3, 3, 3, '자바프로그래밍 기초가 탄탄하다는 가정하에 수업을 나가서 폭풍진도...', 20202, 20103);
+INSERT INTO grades VALUES (2411, 89.00, 3.5, 2, 1, 3, 1, 2, 3, '매주 배운 내용을 지난번 과제에 추가하는 식으로 과제 제출, 최종 발표', 20102, 20102);
+INSERT INTO grades VALUES (3111, 96.00, 3.5, 2, 1, 1, 3, 3, 5,'수업구조가 복습→진도→복습 이렇게 천천히 진행돼서 큰 힘 안들어요', 20103, 20205);

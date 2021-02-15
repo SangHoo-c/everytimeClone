@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.oopsw.member.SubjectDAO"> 
+
+	<select id="getEvalAll" resultType="com.oopsw.member.SubjectVO"> 
+		SELECT t.subject_no as subjectNo, t.subject_name as subjectName, t.professor_name as professorName, t.eval_point as evalPoint, t.eval_text as evalText, t.register_year as registerYear, t.register_semester as registerSemester FROM ( SELECT ROW_NUMBER() OVER(PARTITION BY s.subject_no ORDER BY r.register_year DESC, r.register_semester DESC) AS RNUM, s.subject_no, s.subject_name, s.professor_name, g.eval_point, g.eval_text, r.register_year, r.register_semester FROM registers r, grades g, subjects s WHERE r.register_no=g.register_no AND g.subject_no=s.subject_no AND g.eval_point IS NOT NULL) t WHERE RNUM=1 ORDER BY t.register_year DESC, t.register_semester DESC
+	</select>	
+	<select id="getEvalSub" resultType="com.oopsw.member.SubjectVO"> 
+		SELECT s.subject_no as subjectNo, s.subject_name as subjectName, s.professor_name as professorName, t.eval_point as evalPoint FROM (select s.subject_no, AVG(g.eval_point) as eval_point FROM grades g, subjects s WHERE s.subject_name LIKE '%'||#{subjectName}||'%' AND s.subject_no=g.subject_no AND g.eval_point IS NOT NULL GROUP BY s.subject_no) t, subjects s WHERE t.subject_no = s.subject_no ORDER BY t.eval_point DESC
+	</select>
+	<select id="getTitle" resultType="com.oopsw.member.SubjectVO"> 
+		SELECT s.subject_name as subjectName, s.professor_name as professorName, t.eval_point as evalTotal FROM (select s.subject_no, AVG(g.eval_point) as eval_point FROM grades g, subjects s WHERE s.subject_no=#{subjectNo} AND s.subject_no=g.subject_no AND g.eval_point IS NOT NULL GROUP BY s.subject_no) t, subjects s WHERE t.subject_no = s.subject_no
+	</select>	
+	<select id="getDetail" resultType="com.oopsw.member.SubjectVO"> 
+		SELECT STATS_MODE(g.eval_assignment) as evalAssignment, STATS_MODE(g.eval_exam) as evalExam, STATS_MODE(g.eval_attendance) as evalAttendance, STATS_MODE(g.eval_team) as evalTeam, STATS_MODE(g.eval_understanding) as evalUnderstanding FROM subjects s, grades g WHERE s.subject_no=g.subject_no AND s.subject_no=#{subjectNo} GROUP BY s.subject_no
+	</select>	
+	<select id="getComment" resultType="com.oopsw.member.SubjectVO"> 
+		SELECT g.eval_point as evalPoint, g.eval_text as evalText, r.register_year as registerYear, r.register_semester as registerSemester FROM registers r, grades g, subjects s WHERE s.subject_no=#{subjectNo} AND g.eval_point IS NOT NULL AND s.subject_no=g.subject_no AND g.register_no=r.register_no ORDER BY r.register_year DESC, r.register_semester DESC
+	</select>	
+	<select id="getEvalCheck" resultType="com.oopsw.member.SubjectVO">
+		SELECT g.grade_no as gradeNo, s.subject_no as subjectNo, s.SUBJECT_NAME as subjectName, s.PROFESSOR_NAME as professorName, eval_point as evalPoint  FROM registers r, grades g, subjects s WHERE r.student_id=#{studentId} AND r.register_year=2020 AND r.register_semester=2 AND r.register_no=g.register_no AND g.subject_no=s.subject_no
+	</select>
+	<select id ="getTotEvalCheck" resultType ="java.lang.String">
+		SELECT DISTINCT NVL2(g.eval_point, 'T', 'F') FROM registers r, grades g, subjects s WHERE r.student_id=#{studentId} AND r.register_year=2020 AND r.register_semester=2 AND r.register_no=g.register_no AND g.subject_no=s.subject_no
+	</select>
+	<update id ="getUpdateEval">
+		UPDATE grades SET eval_assignment=#{evalAssignment}, eval_exam=#{evalExam}, eval_attendance=#{evalAttendance}, eval_team=#{evalTeam}, eval_understanding=#{evalUnderstanding}, eval_point=#{evalPoint}, eval_text=#{evalText} WHERE grade_no=#{gradeNo}
+	</update>
+
+</mapper>

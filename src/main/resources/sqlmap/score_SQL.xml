@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.oopsw.member.ScoreDAO"> 
+
+	<select id="getScore" resultType="com.oopsw.member.ScoreVO"> 
+		SELECT s.subject_no as subjectNo, s.classification, s.subject_name as subjectName, s.professor_name as professorName, s.credits, g.score, g.grade FROM grades g, subjects s WHERE g.subject_no=s.subject_no AND g.register_no IN (SELECT t.register_no FROM (SELECT register_no FROM registers WHERE student_id=#{studentId} ORDER BY register_year DESC, register_semester DESC) t WHERE ROWNUM=1)
+	</select>
+	<select id="getScoreAll" resultType="com.oopsw.member.ScoreVO"> 	
+		SELECT s.credits, g.score, g.grade FROM subjects s, grades g, registers r WHERE r.student_id=#{studentId} AND r.register_no=g.register_no AND g.subject_no=s.subject_no
+	</select>
+  	<select id="getScoreSemester" resultType="com.oopsw.member.ScoreVO"> 
+		SELECT s.subject_no as subjectNo, s.classification, s.subject_name as subjectName, s.professor_name as professorName, s.credits, g.score, g.grade FROM registers r, grades g, subjects s WHERE r.student_id=#{studentId} AND r.register_year=#{registerYear} AND r.register_semester=#{registerSemester} AND r.register_no=g.register_no AND g.subject_no=s.subject_no 
+	</select>	
+</mapper>

@@ -1,0 +1,66 @@
+1. 학생정보(students)테이블 생성
+CREATE TABLE students
+(
+    student_id    VARCHAR2(20)    NOT NULL, 
+    name          VARCHAR2(20)    NOT NULL, 
+    phone         VARCHAR2(20)    NOT NULL, 
+    gender        CHAR(1)         NOT NULL, 
+    email         VARCHAR2(50)    NOT NULL, 
+    pw            VARCHAR2(30)    NULL, 
+    CONSTRAINT STUDENTS_PK PRIMARY KEY (student_id)
+)
+
+
+2. 수강정보(registers)테이블 생성
+CREATE TABLE registers
+(
+    register_no          NUMBER          NOT NULL, 
+    register_year        NUMBER(4)       NOT NULL, 
+    register_semester    VARCHAR2(10)    NOT NULL, 
+    student_id           VARCHAR2(20)    NOT NULL, 
+    CONSTRAINT REGISTERS_PK PRIMARY KEY (register_no)
+)
+
+ALTER TABLE registers
+    ADD CONSTRAINT FK_registers_student_id_studen FOREIGN KEY (student_id)
+        REFERENCES students (student_id)
+
+
+3. 과목정보(subjects)테이블 생성
+CREATE TABLE subjects
+(
+    subject_no        NUMBER          NOT NULL, 
+    classification    VARCHAR2(12)    NOT NULL, 
+    subject_name      VARCHAR2(30)    NOT NULL, 
+    professor_name    VARCHAR2(20)    NOT NULL, 
+    credits           NUMBER          NOT NULL, 
+    CONSTRAINT SUBJECTS_PK PRIMARY KEY (subject_no)
+)
+
+
+4. 성적정보(grades)테이블 생성
+CREATE TABLE grades
+(
+    grade_no              NUMBER          NOT NULL, 
+    score                 NUMBER(5,2)     NOT NULL, 
+    grade                 NUMBER(3,2)     NOT NULL, 
+    eval_assignment       NUMBER          NULL, 
+    eval_exam             NUMBER          NULL, 
+    eval_attendance       NUMBER          NULL, 
+    eval_team             NUMBER          NULL, 
+    eval_understanding    NUMBER          NULL, 
+    eval_point            NUMBER          NULL, 
+    eval_text             VARCHAR2(1000)    NULL, 
+    register_no           NUMBER          NOT NULL, 
+    subject_no            NUMBER          NOT NULL, 
+    CONSTRAINT GRADES_PK PRIMARY KEY (grade_no)
+)
+
+ALTER TABLE grades
+    ADD CONSTRAINT FK_grades_register_no_register FOREIGN KEY (register_no)
+        REFERENCES registers (register_no)
+
+ALTER TABLE grades
+    ADD CONSTRAINT FK_grades_subject_no_subjects_ FOREIGN KEY (subject_no)
+        REFERENCES subjects (subject_no)
+
